@@ -1,0 +1,58 @@
+\newpage
+\section{MLE và MAP}
+
+\subsection{MLE - Ước lượng hợp lý cực đại}
+
+\paragraph{}{Ước lượng hợp lý cực đại (Maximum Likelihood Estimation - MLE) là phương pháp ước lượng tham số của một phân phối xác suất dựa trên dữ liệu quan sát. Cho họ phân phối $p_a$ với tham số $a \in D$ (miền giá trị) và tập dữ liệu $\Theta = \{x_1, \ldots, x_n\}$ được lấy mẫu độc lập từ $p_a$, hàm hợp lý được định nghĩa:
+\[
+\mathcal{L}(a \mid \Theta) = \prod_{i=1}^n p(x_i ; a).
+\]
+}
+
+\paragraph{}{Mục tiêu của MLE là tìm $a_{\text{MLE}}$ sao cho tối đa hóa hàm hợp lý:
+\[
+a_{\text{MLE}} = \arg\max_{a \in D} \mathcal{L}(a \mid \Theta).
+\]
+
+Để đơn giản hóa tính toán, ta thường sử dụng log-hàm hợp lý, vì log là hàm đơn điệu:
+
+\[
+    \log \mathcal{L}(a \mid \Theta) = \sum_{i=1}^n \log p(x_i ; a)
+\]
+
+Khi đó:
+
+\[
+a_{\text{MLE}} = \arg\max_{a \in D} \log \mathcal{L}(a \mid \Theta).
+\]
+
+}
+
+\subsection{MAP - Ước lượng cực đại hậu nghiệm}
+
+\paragraph{}{Ước lượng cực đại hậu nghiệm (Maximum A Posterior Estimation - MAP) là phương pháp ước lượng tham số dựa trên việc kết hợp dữ liệu quan sát với thông tin tiền nghiệm. Cho họ phân phối $p_a$ với tham số $a \in D$ và tập dữ liệu $\Theta = \{x_1, \ldots, x_n\}$ được lấy mẫu độc lập từ $p_a$, cùng với phân phối tiên nghiệm $\mu \sim p_{a_0}$. Hàm hợp lý có điều kiện được định nghĩa:
+\[
+\mathcal{L}(a \mid a_0, \Theta) = \prod_{i=1}^n p_a(x_i \mid a_0).
+\]
+}
+
+\paragraph{}{Mục tiêu của MAP là tìm $a_{\text{MAP}}$ tối đa hóa hàm hợp lý kết hợp với tiền nghiệm:
+
+\[
+a_{\text{MAP}} = \arg\max_{a \in D} \mathcal{L}(a \mid a_0, \Theta).
+\]
+
+Trong thực tế, ta thường tối ưu hóa log-hàm hợp lý để đơn giản hóa:
+
+\[
+\log \mathcal{L}(a \mid a_0, \Theta) = \sum_{i=1}^n \log p_a(x_i \mid a_0).
+\]
+}
+
+\paragraph{}{MAP hữu ích khi dữ liệu quan sát hạn chế và thông tin tiền nghiệm từ $p_{a_0}$ có thể cải thiện độ chính xác của ước lượng.}
+
+% \subsection{So sánh}
+% \begin{itemize}
+%     \item \textbf{MLE}: Chỉ dựa trên dữ liệu, đơn giản và hiệu quả khi dữ liệu lớn, nhưng dễ bị ảnh hưởng bởi nhiễu khi dữ liệu ít hoặc phân phối phức tạp.
+%     \item \textbf{MAP}: Kết hợp dữ liệu và tiền nghiệm, phù hợp cho các bài toán cần điều chuẩn hoặc dữ liệu khan hiếm. Tiền nghiệm đóng vai trò như một yếu tố điều chỉnh, cải thiện độ chính xác trong trường hợp dữ liệu hạn chế. Nhược điểm là kết quả phụ thuộc vào chất lượng của phân phối tiền nghiệm.
+% \end{itemize}

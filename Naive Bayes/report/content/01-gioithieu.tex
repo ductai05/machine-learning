@@ -1,0 +1,56 @@
+\newpage
+\section{Giới thiệu}
+
+\paragraph{}{Đây là bài báo cáo cho \textbf{Lab 2 - Phân loại thư rác}, môn Phương pháp toán cho Trí tuệ nhân tạo, lớp Trí tuệ nhân tạo Khóa 2023 (23TNT1), Khoa Công nghệ thông tin, Trường Đại học Khoa học tự nhiên - Đại học Quốc gia TP.HCM. \\
+
+Trong bài báo cáo này, chúng tôi sẽ trình bày phương pháp \textbf{phân loại thư rác} dựa trên \textbf{Naive bayes
+classifier}, \textbf{MLE}, \textbf{MAP} và \textbf{Bag-of-Words}.}
+
+\paragraph{}{\textbf{Báo cáo được thực hiện bởi nhóm các thành viên:}} 
+\begin{itemize}
+    \item Nguyễn Đình Hà Dương (23122002)
+    \item Nguyễn Lê Hoàng Trung (23122004)
+    \item Đinh Đức Tài (23122013)
+    \item Hoàng Minh Trung (23122014)
+\end{itemize}
+
+\paragraph{}{\textbf{Đường dẫn repository Github của báo cáo:}} \href{https://github.com/ductai05/Math-For-AI}{https://github.com/ductai05/Math-For-AI} \cite{repo}
+
+\paragraph{}{\textbf{Bảng phân công nhiệm vụ cho từng thành viên:}}
+
+\begin{table}[H]
+\centering
+\label{tab:nhiemvu}
+\begin{tabular}{|c|c|l|}
+\hline
+\textbf{Họ và tên} &
+  \textbf{MSSV} &
+  \multicolumn{1}{c|}{\textbf{Nhiệm vụ}} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Nguyễn Đình\\ Hà Dương\end{tabular} &
+  23122002 &
+  \begin{tabular}[c]{@{}l@{}}- Báo cáo Naive Bayes Classifier.\\ - Review report.\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Nguyễn Lê\\ Hoàng Trung\end{tabular} &
+  23122004 &
+  \begin{tabular}[c]{@{}l@{}}- Code Naive Bayes Classifier.\\ - Đánh giá và nhận xét kết quả mô hình.\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Đinh \\ Đức Tài\end{tabular} &
+  23122013 &
+  \begin{tabular}[c]{@{}l@{}}- Báo cáo Bag-of-Words.\\ - Báo cáo tổng quan pipeline xử lý. Review report.\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Hoàng\\ Minh Trung\end{tabular} &
+  23122014 &
+  \begin{tabular}[c]{@{}l@{}}- Báo cáo MLE, MAP.\\ - Kiểm tra code Naive Bayes Classifier.\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+\paragraph{}{\textbf{Các thư viện và công nghệ sử dụng:}}
+
+\begin{itemize}
+    \item Numpy, Pandas: Thư viện Python để xử lý số học, thao tác và xử lý dữ liệu.
+    \item collections.Counter: Đếm tần suất xuất hiện của các phần tử trong một iterable hoặc từ một mapping.
+    \item matplotlib.pyplot: Dùng để tạo ra các loại biểu đồ và hình ảnh trực quan hóa dữ liệu một cách dễ dàng và nhanh chóng.
+    \item scipy.sparse.csr\_matrix: Dùng để lưu trữ và thao tác hiệu quả với các ma trận thưa, giúp tiết kiệm bộ nhớ và tăng tốc độ tính toán.
+    % \item Jupyter Notebook (thông qua jupyter, ipykernel): Môi trường làm việc tương tác cho phép kết hợp mã thực thi, văn bản mô tả (Markdown), công thức toán học và trực quan hóa trong cùng một tài liệu.
+    % \item Visual Studio Code: Trình soạn thảo mã nguồn (IDE). 
+    % \item Git, Github: Quản lý dự án, lưu và chia sẻ source code.
+\end{itemize}
+
+\pagebreak

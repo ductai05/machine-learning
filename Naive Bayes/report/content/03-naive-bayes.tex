@@ -1,0 +1,91 @@
+\newpage
+\section{Naive bayes classifier}
+
+\paragraph{}{Naive Bayes Classifier (NBC) là một mô hình phân loại dựa trên lý thuyết xác suất, đặc biệt là định lý Bayes. Naive Bayes là một mô hình phân loại đơn giản nhưng mạnh mẽ, đặc biệt trong các ứng dụng NLP như phân loại email, phân tích cảm xúc,... Sự hiệu quả đến từ khả năng tổng quát tốt với dữ liệu lớn và tính toán nhanh chóng.}
+
+\subsection{Định lý Bayes}
+
+\paragraph{}{Giả sử ta có một nhóm đầy đủ \( A_1, A_2, \dots, A_n \), và xảy ra một sự kiện \( H \) nào đó. Khi đó, xác suất có điều kiện của \( A_i \) khi biết \( H \) được xác định như sau:}
+
+\[
+P(A_i \mid H) = \frac{P(A_i)P(H \mid A_i)}{P(H)}
+\tag{*}
+\]
+
+Trong đó, theo định lý xác suất toàn phần, ta có:
+
+\[
+P(H) = \sum_{i=1}^{n} P(A_i)P(H \mid A_i)
+\tag{**}
+\]
+
+Thay (**) vào (*), ta được công thức Bayes tổng quát:
+
+\[
+P(A_i \mid H) = \frac{P(A_i)P(H \mid A_i)}{\sum\limits_{i=1}^{n} P(A_i)P(H \mid A_i)}
+\tag{***}
+\]
+
+\subsection{Naive Bayes}
+\paragraph{}{Xét bài toán phân loại (classification) với $C$ lớp $1, 2, \ldots, C$. Giả sử ta có một điểm dữ liệu mới $\mathbf{x} \in \mathbb{R}^d$, mục tiêu là xác định xác suất để điểm này thuộc vào lớp $c$, tức là tính $p(y = c \mid \mathbf{x})$, hoặc viết gọn là $p(c \mid \mathbf{x})$.
+Ta sẽ chọn nhãn có xác suất lớn nhất theo công thức:}
+
+\begin{equation}
+c = \arg\max_{c \in \{1, \ldots, C\}} p(c \mid \mathbf{x})
+\end{equation}
+
+\paragraph{}{
+\textbf{Áp dụng định lý Bayes}:
+}
+
+Xác suất $p(c \mid \mathbf{x})$ có thể khó tính trực tiếp. Ta áp dụng định lý Bayes:
+
+\begin{equation}
+p(c \mid \mathbf{x}) = \frac{p(\mathbf{x} \mid c) p(c)}{p(\mathbf{x})}
+\end{equation}
+
+Do $p(\mathbf{x})$ là biểu thức không phụ thuộc $c$, ta có thể viết:
+
+\begin{equation}
+c = \arg\max_{c} p(\mathbf{x} \mid c) p(c)
+\end{equation}
+
+Xác suất p(c) là xác suất để một điểm dữ liệu rơi vào lớp c. Giá trị này có thể tính bằng MLE, tức tỉ lệ số điểm dữ liệu trong tập training rơi vào class này chia cho tổng số lượng dữ liệu trong tập training.
+
+\subsection{Giả định Naive (Độc lập)}
+
+\paragraph{}{Xác suất \( p(\mathbf{x} \mid c) \), tức là phân phối của các điểm dữ liệu trong nhãn \( y \), thường rất khó tính toán vì \( \mathbf{x} \) là một biến ngẫu nhiên nhiều chiều. Để giúp cho việc tính toán trở nên đơn giản hơn, Giả định Naive thường đưa rằng các thành phần của biến ngẫu nhiên \( \mathbf{x} \) là độc lập với nhau nếu biết \( y \). Tức là:}
+
+
+\[
+p(\mathbf{x} \mid y) = p(x_1, x_2, \ldots, x_d \mid y) = \prod_{i=1}^{d} p(x_i \mid y)
+\]
+
+\paragraph{}{Giả định này giúp đơn giản hóa việc ước lượng xác suất, đặc biệt khi số lượng đặc trưng rất lớn như trong văn bản.}
+
+\subsection{Multinomial Naive Bayes (cho dữ liệu rời rạc)}
+\paragraph{}{Trong mô hình Multinomial Naive Bayes, ta tính xác suất có điều kiện của một đặc trưng \( x_i \) (thường là từ trong văn bản) xuất hiện trong lớp \( c \) như sau:}
+
+\[
+p(x_i \mid c) = \frac{\text{count}(x_i, c)}{\sum_j \text{count}(x_j, c)}
+\]
+\begin{itemize}
+  \item \( x_i \): đặc trưng thứ \( i \) (trong ngữ cảnh xử lý văn bản, đây thường là một từ trong từ điển); \( c \): một lớp cụ thể trong bài toán phân loại.
+  \item \( \text{count}(x_i, c) \): số lần đặc trưng \( x_i \) xuất hiện trong tất cả văn bản thuộc lớp \( c \); \( \sum_j \text{count}(x_j, c) \): tổng số lần xuất hiện của tất cả đặc trưng \( x_j \) trong các văn bản thuộc lớp \( c \).
+\end{itemize}
+
+Khi đó, \( p(x_i \mid c) \) tỉ lệ với tần suất từ thứ \( i \) (hay đặc trưng thứ \( i \) trong trường hợp tổng quát) xuất hiện trong các văn bản thuộc lớp \( c \).
+
+\paragraph{} {Tuy nhiên, nếu một đặc trưng \( x_i \) không xuất hiện trong bất kỳ văn bản nào thuộc lớp \( c \) trong tập huấn luyện, thì \( \text{count}(x_i, c) = 0 \), dẫn đến xác suất \( p(x_i \mid c) = 0 \). Điều này khiến cho toàn bộ xác suất hậu nghiệm \( P(c \mid \mathbf{x}) \) trở thành 0 gây ảnh hưởng nghiêm trọng đến quá trình phân loại. Để khắc phục, ta sử dụng kỹ thuật \textbf{làm trơn Laplace}. Công thức xác suất sau khi làm trơn là:}
+
+\[
+p(x_i \mid c) = \frac{\text{count}(x_i, c) + \alpha}{\sum_j \text{count}(x_j, c) + \alpha \cdot V}
+\]
+
+Trong đó:
+\begin{itemize}
+    \item \( \alpha > 0 \) là hệ số làm trơn Laplace, giúp tránh xác suất bằng 0 (thường chọn \( \alpha = 1 \)),
+    \item \( V \) là kích thước từ vựng (số lượng đặc trưng khác nhau).
+\end{itemize}
+
+\textbf{Ứng dụng:} Kỹ thuật này rất phổ biến trong bài toán phân loại văn bản như lọc thư rác, gán nhãn chủ đề, phân tích cảm xúc, nơi dữ liệu thường được biểu diễn dưới dạng mô hình bag-of-words hoặc n-grams.
